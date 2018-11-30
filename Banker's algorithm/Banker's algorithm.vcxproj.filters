@@ -18,9 +18,6 @@
     <ClCompile Include="..\..\Banker%27s algorithm\Banker%27s algorithm\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Banker%27s algorithm\Banker%27s algorithm\input.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Banker%27s algorithm\Banker%27s algorithm\generator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -116,7 +116,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Banker%27s algorithm\Banker%27s algorithm\generator.cpp" />
-    <ClCompile Include="..\..\Banker%27s algorithm\Banker%27s algorithm\input.cpp" />
     <ClCompile Include="..\..\Banker%27s algorithm\Banker%27s algorithm\main.cpp" />
     <ClCompile Include="..\..\Banker%27s algorithm\Banker%27s algorithm\printing.cpp" />
     <ClCompile Include="..\..\Banker%27s algorithm\Banker%27s algorithm\Processing.cpp" />
