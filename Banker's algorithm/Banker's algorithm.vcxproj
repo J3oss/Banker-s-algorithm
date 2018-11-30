@@ -115,6 +115,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Banker%27s algorithm\Banker%27s algorithm\generator.cpp" />
+    <ClCompile Include="..\..\Banker%27s algorithm\Banker%27s algorithm\input.cpp" />
     <ClCompile Include="..\..\Banker%27s algorithm\Banker%27s algorithm\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
