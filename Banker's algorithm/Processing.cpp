@@ -13,25 +13,37 @@ void allocate(int request_pointer,int allocation_pointer,int no_of_resources,int
 
 }
 
-void test(int no_of_resources,int no_of_processes,int* availblity_matrix,int** max_matrix)
+void test(int no_of_resources,int no_of_processes,int* availblity_matrix,int** need_matrix)
 {
+	int true_counter=0;
 	int* sum = new int[no_of_resources];
-	for (int j = 0; j < no_of_resources; j++)
+	for (int i = 0; i < no_of_resources; i++)
 	{
-		sum[j] = 0;
+		sum[i] = 0;
 	}
 
 	for (int i = 0; i < no_of_resources; i++)
 	{
 		for (int j = 0; j < no_of_processes; j++)
 		{
-			sum[i] = sum[i]+ max_matrix[i][j];
+			sum[i] = sum[i]+ need_matrix[j][i];
 		}
 	}
-
+	
 	for (int i = 0; i < no_of_resources; i++)
 	{
-		std::cout << sum[i];
+		if (availblity_matrix[i]>=sum[i])
+		{
+			true_counter++;
+		}
 	}
-	std::cout << std::endl;
+	if (true_counter == no_of_resources)
+	{
+		std::cout << "system is in safe state"<<std::endl;
+	}
+	else
+	{
+		std::cout << "system is in unsafe state" << std::endl;
+		//remove last added process
+	}
 }

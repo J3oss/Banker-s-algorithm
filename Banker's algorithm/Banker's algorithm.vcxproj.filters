@@ -27,5 +27,8 @@
     <ClCompile Include="..\..\Banker%27s algorithm\Banker%27s algorithm\Processing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Banker%27s algorithm\Banker%27s algorithm\printing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
