@@ -175,7 +175,7 @@ int main()
 
 		print_all(no_of_resources, no_of_processes, available_array, max_matrix, allocation_matrix, need_matrix);
 		
-		available_array = copy_matrix(1, no_of_resources, availble_from_start);
+		available_array = copy_matrix(1, no_of_resources, availble_from_start);//reset availble array
 	}
 
 	system("pause");
