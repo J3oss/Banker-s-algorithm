@@ -66,8 +66,10 @@ void allocate(int mapping_number, int no_of_processes, int no_of_resources, int*
 			availblity_matrix[0][j] = availblity_matrix[0][j] - allocation_matrix[i][j];
 		}
 	}
+	std::cout << "allocation debug information:" << std::endl;
+	print_all(no_of_resources, no_of_processes, availblity_matrix, max_matrix, allocation_matrix, need_matrix);
 }
-bool test(int mapping_number, int no_of_processes, int no_of_resources, int** allocation_matrix, int**max_matrix, int** availble, int** request, int** need_matrix,int** &finish_sequence)
+bool test(int mapping_number, int no_of_processes, int no_of_resources, int** allocation_matrix, int**max_matrix, int** availble, int** request, int** need_matrix)
 {
 	for (int i = 0; i < no_of_resources; i++)
 	{
@@ -83,7 +85,7 @@ bool test(int mapping_number, int no_of_processes, int no_of_resources, int** al
 	int counter = 1;
 	int** finish = matrix_generation(1,no_of_processes);
 
-	for (int i = 0; i < no_of_processes; i++)//worst case scenario
+	for (int k = 0; k < no_of_processes; k++)//worst case scenario
 	{
 		for (int i = 0; i < no_of_processes; i++)
 		{
@@ -99,6 +101,7 @@ bool test(int mapping_number, int no_of_processes, int no_of_resources, int** al
 					for (int j = 0; j < no_of_resources; j++)
 						availble[0][j] = availble[0][j] + allocation_matrix[i][j];
 					finish[i][0] = counter;
+					std::cout << "P" << i << ":"<< counter << std::endl;
 					counter++;
 					safe = 0;
 				}
@@ -108,20 +111,20 @@ bool test(int mapping_number, int no_of_processes, int no_of_resources, int** al
 
 	for (int i = 0; i < no_of_processes; i++)
 	{
-		if (finish[i] == 0)
+		if (finish[i][0] == 0)
 		{
 			std::cout << "Request makes system unsafe !!" << std::endl;
 			std::cout << "Request is rejected !!" << std::endl;
-			finish_sequence = finish;
 			return false;
 		}
 	}
+
+	print_matrix("ss", finish, no_of_processes, 1);
 
 	std::cout << "Request is accepted and added !" << std::endl;
 	std::cout << std::endl;
 	std::cout << "System after request is added:" << std::endl;
 	std::cout << std::endl;
-	finish_sequence = finish;
 	std::cout << std::endl;
 	return true;
 }
@@ -132,7 +135,6 @@ int main()
 	int   no_of_resources = 0; //user defined , represents number of resources in the system
 	int   mapping_number = 0;  //user defined , which represent what process is requested
 	int** available_array;     //user defined , represents amount of each resources in the system
-	int** finish_sequence = 0;
 
 	std::cout << "Please entre the following:" << std::endl; //User inputs
 	std::cout << "1) Number of resources:";
@@ -175,18 +177,18 @@ int main()
 			int** copy_need = copy_matrix(no_of_processes, no_of_resources, need_matrix);
 			int** copy_availble = copy_matrix(1, no_of_resources, available_array);
 
+			
 			allocate(mapping_number, no_of_processes, no_of_resources, request, copy_allocation, max_matrix, copy_need, copy_availble);//allocate in copies
-
-			if (!test(mapping_number, no_of_processes, no_of_resources, copy_allocation, max_matrix, copy_availble, request, copy_need,finish_sequence))//result of test
+			if (!test(mapping_number, no_of_processes, no_of_resources, copy_allocation, max_matrix, copy_availble, request, copy_need))//result of test
 			{
 				for (int i = 0; i < no_of_resources; i++) //if test determines that request makes system unsafe,system deletes the request
 					request[0][i] = 0;
 			}
-
+			
 			allocate(mapping_number, no_of_processes, no_of_resources, request, allocation_matrix, max_matrix, need_matrix, available_array);//allocate in real
-
+			
 			print_all(no_of_resources, no_of_processes, available_array, max_matrix, allocation_matrix, need_matrix);
-
+			
 			available_array = copy_matrix(1, no_of_resources, availble_from_start);//reset availble array
 		}
 		else
@@ -195,6 +197,5 @@ int main()
 			goto start;
 		}
 		}
-		
 	system("pause");
 }
